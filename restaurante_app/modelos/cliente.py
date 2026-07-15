@@ -1,16 +1,13 @@
 class Cliente:
-    def __init__(self, nombre: str, edad: int, correo: str, vip: bool):
-       
+    def __init__(self, identificacion: str, nombre: str, correo: str):
+        self.identificacion = identificacion
         self.nombre = nombre
-        self.edad = edad
         self.correo = correo
-        self.vip = vip
 
-    def __str__(self):
-        tipo = "VIP" if self.vip else "Regular"
+    def mostrar_informacion(self) -> str:
         return (
-            f"Cliente: {self.nombre}\n"
-            f"Edad: {self.edad}\n"
-            f"Correo: {self.correo}\n"
-            f"Tipo: {tipo}"
+            f"Identificación: {self.identificacion}\n"
+            f"Nombre: {self.nombre}\n"
+            f"Correo: {self.correo}"
         )
+        

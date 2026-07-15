@@ -1,49 +1,104 @@
-# Sistema de Gestión de Restaurante
+# Sistema de Restaurante
 
-## Estudiante
+## Nombre del estudiante
 
-**Nombre:** Josue Batallas  
-**Paralelo:** F
+**Nombre:** Josue Batallas
 
 ## Descripción del proyecto
 
-La siguiente actividad consiste en el desarrollo de un sistema básico de gestión de restaurante utilizando Programación Orientada a Objetos en Python. El siguiente sistema nos permite registrar productos y clientes, almacenarlos en listas y mostrar la información organizada en la consola. El objetivo es aplicar correctamente clases, objetos, constructores, métodos, importaciones y una estructura modular.
+ Se desarrollo un sistema básico de gestión para un restaurante. El sistema permite registrar y listar productos, bebidas y clientes mediante un menú ejecutado desde la consola.
 
-## Estructura del proyecto
+
+# Estructura del proyecto
 
 ```
 restaurante_app/
 │
 ├── modelos/
 │   ├── __init__.py
-│   ├── cliente.py
-│   └── producto.py
+│   ├── producto.py
+│   ├── bebida.py
+│   └── cliente.py
 │
 ├── servicios/
 │   ├── __init__.py
 │   └── restaurante.py
 │
-└── main.py
+├── main.py
+└── README.md
 ```
 
-## Explicación de la estructura
+---
 
-- **modelos/**: Aqui estan las clases `Producto` y `Cliente`, que representan las entidades principales del sistema.
-- **servicios/**: Aqui estan las clases `Restaurante`, encargada de administrar las listas de productos y clientes mediante diferentes métodos.
-- **main.py**: Aqui se encarga de entrar el programa. Se crean los objetos, se agregan al restaurante y se muestra la información registrada en la consola.
+# Responsabilidad de cada clase
 
-## Tipos de datos utilizados
- Utilize correctamente todos los tipos de datos mencionados en la materia de l actividad: Int, float, bool y str
+## Producto
 
-## Funcionalidades
+Es un producto general del restaurante y almacena información como código, nombre, categoría y precio.
 
-- Registran productos del restaurante.
-- Registran clientes.
-- Almacenan productos y clientes en listas.
-- Mostrar la información de los productos.
-- Mostrar la información de los clientes.
-- Mostrar el total de productos y clientes.
+## Bebida
 
-## Reflexión
+Hereda de la clase Producto e incorpora información específica de una bebida, como tamaño y tipo de envase.
 
-Gracias a esta actividad entendi la importancia de utilizar identificadores descriptivos, utilizar correctamente las convenciones de nombres de Python y emplear correctamente los tipos de datos que se menciono en la materia antes de realizar esta actividad. El uso de listas y una estructura modular me ayudo a organizar el código y mejorar el mantenimiento para que el programa se entienda.
+## Cliente
+
+Se representa la información de un cliente registrado, incluyendo identificación, nombre y correo electrónico.
+
+## Restaurante
+
+Administra el registro, listado de productos y clientes. También verifica que no existan códigos o identificaciones duplicadas.
+
+## main.py
+
+Es el punto de inicio del programa. Muestra el menú interactivo, solicitar la información al usuario y llamar a los métodos del servicio Restaurante.
+
+---
+
+# Relación entre Producto y Bebida
+
+La clase Bebida hereda de la clase Producto porque una bebida representa un tipo específico de producto.
+
+Una bebida puede utilizar todas las características de un producto y añadir información adicional sin modificar la estructura del sistema.
+
+---
+
+# Principios SOLID aplicados
+
+## SRP
+
+Cada clase tiene una única responsabilidad.
+
+- Producto representa productos.
+- Bebida representa bebidas.
+- Cliente representa clientes.
+- Restaurante administra la información.
+- main.py controla la interacción con el usuario.
+
+## OCP
+
+El sistema puede ampliarse agregando nuevas clases derivadas de Producto sin modificar la lógica principal de Restaurante.
+
+## LSP
+
+Los objetos de la clase Bebida pueden utilizarse como objetos de tipo Producto sin afectar el funcionamiento del programa.
+
+---
+
+# Instrucciones de ejecución
+
+1. Abrir el proyecto en Visual Studio Code.
+2. Abrir la terminal.
+3. Ubicarse en la carpeta del proyecto.
+4. Ejecutar el siguiente comando:
+
+```bash
+python main.py
+```
+
+5. Utilizar el menú interactivo para registrar y listar productos, bebidas y clientes.
+
+---
+
+# Reflexión
+
+Este programa me ayudo a entender el desarrollo de aplicaciones más organizadas. Esta aplicación me ayudo a distribuir correctamente las responsabilidades de cada clase, sin afectar el funcionamiento existente.

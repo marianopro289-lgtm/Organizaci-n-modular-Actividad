@@ -1,33 +1,109 @@
-from modelos.producto import Producto
-from modelos.cliente import Cliente
-from servicios.restaurante import Restaurante
-
-restaurante = Restaurante("Sabores del Ecuador")
+from modelos import Producto, Bebida, Cliente
+from servicios import Restaurante
 
 
-producto1 = Producto("Pizza Familiar", 12.50, 10, True)
-producto2 = Producto("Hamburguesa Especial", 8.75, 20, True)
+def mostrar_menu() -> None:
+    print("\n========================================")
+    print("        SISTEMA DE RESTAURANTE")
+    print("========================================")
+    print("1. Registrar producto")
+    print("2. Registrar bebida")
+    print("3. Registrar cliente")
+    print("----------------------------------------")
+    print("4. Listar productos")
+    print("5. Listar clientes")
+    print("----------------------------------------")
+    print("6. Salir")
 
 
-cliente1 = Cliente("María López", 20, "maria@gmail.com", True)
-cliente2 = Cliente("Carlos Pérez", 28, "carlos@gmail.com", False)
+def registrar_producto(restaurante: Restaurante) -> None:
+    print("\n--- Registrar Producto ---")
+    codigo = input("Código: ")
+    nombre = input("Nombre: ")
+    categoria = input("Categoría: ")
+    precio = float(input("Precio: "))
+
+    producto = Producto(codigo, nombre, categoria, precio)
+
+    if restaurante.registrar_producto(producto):
+        print("Producto registrado correctamente.")
+    else:
+        print("Error: ya existe un producto con ese código.")
 
 
-restaurante.agregar_producto(producto1)
-restaurante.agregar_producto(producto2)
+def registrar_bebida(restaurante: Restaurante) -> None:
+    print("\n--- Registrar Bebida ---")
+    codigo = input("Código: ")
+    nombre = input("Nombre: ")
+    categoria = input("Categoría: ")
+    precio = float(input("Precio: "))
+    tamano = input("Tamaño: ")
+    envase = input("Tipo de envase: ")
 
-restaurante.agregar_cliente(cliente1)
-restaurante.agregar_cliente(cliente2)
+    bebida = Bebida(
+        codigo,
+        nombre,
+        categoria,
+        precio,
+        tamano,
+        envase
+    )
+
+    if restaurante.registrar_producto(bebida):
+        print("Bebida registrada correctamente.")
+    else:
+        print("Error: ya existe un producto con ese código.")
 
 
-print("=" * 45)
-print(f"RESTAURANTE: {restaurante.nombre}")
-print("=" * 45)
+def registrar_cliente(restaurante: Restaurante) -> None:
+    print("\n--- Registrar Cliente ---")
+    identificacion = input("Identificación: ")
+    nombre = input("Nombre: ")
+    correo = input("Correo: ")
 
-restaurante.mostrar_productos()
-restaurante.mostrar_clientes()
+    cliente = Cliente(
+        identificacion,
+        nombre,
+        correo
+    )
+
+    if restaurante.registrar_cliente(cliente):
+        print("Cliente registrado correctamente.")
+    else:
+        print("Error: ya existe un cliente con esa identificación.")
 
 
-print("\n========== RESUMEN ==========")
-print(f"Total de productos registrados: {restaurante.total_productos()}")
-print(f"Total de clientes registrados: {restaurante.total_clientes()}")
+def main() -> None:
+    restaurante = Restaurante()
+
+    while True:
+        mostrar_menu()
+
+        opcion = input("\nSeleccione una opción: ")
+
+        if opcion == "1":
+            registrar_producto(restaurante)
+
+        elif opcion == "2":
+            registrar_bebida(restaurante)
+
+        elif opcion == "3":
+            registrar_cliente(restaurante)
+
+        elif opcion == "4":
+            restaurante.listar_productos()
+
+        elif opcion == "5":
+            restaurante.listar_clientes()
+
+        elif opcion == "6":
+            print("\nGracias por utilizar el sistema.")
+            break
+
+        else:
+            print("\nOpción inválida.")
+
+
+if __name__ == "__main__":
+    main()
+    

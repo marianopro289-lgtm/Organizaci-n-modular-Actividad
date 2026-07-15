@@ -1,43 +1,44 @@
-from modelos.producto import Producto
-from modelos.cliente import Cliente
+from modelos import Producto, Cliente
 
 
 class Restaurante:
-
-    def __init__(self, nombre: str):
-       
-        self.nombre = nombre
-
-       
+    def __init__(self):
         self.productos: list[Producto] = []
         self.clientes: list[Cliente] = []
 
-  
-    def agregar_producto(self, producto: Producto):
+    def registrar_producto(self, producto: Producto) -> bool:
+        for p in self.productos:
+            if p.codigo == producto.codigo:
+                return False
+
         self.productos.append(producto)
+        return True
 
+    def registrar_cliente(self, cliente: Cliente) -> bool:
+        for c in self.clientes:
+            if c.identificacion == cliente.identificacion:
+                return False
 
-    def agregar_cliente(self, cliente: Cliente):
         self.clientes.append(cliente)
+        return True
 
-   
-    def mostrar_productos(self):
-        print("\n========== PRODUCTOS ==========")
+    def listar_productos(self) -> None:
+        if not self.productos:
+            print("\nNo hay productos registrados.")
+            return
+
+        print("\n===== LISTA DE PRODUCTOS =====")
         for producto in self.productos:
-            print(producto)
+            print(producto.mostrar_informacion())
             print("-" * 35)
 
-   
-    def mostrar_clientes(self):
-        print("\n========== CLIENTES ==========")
+    def listar_clientes(self) -> None:
+        if not self.clientes:
+            print("\nNo hay clientes registrados.")
+            return
+
+        print("\n===== LISTA DE CLIENTES =====")
         for cliente in self.clientes:
-            print(cliente)
+            print(cliente.mostrar_informacion())
             print("-" * 35)
-
-
-    def total_productos(self):
-        return len(self.productos)
-
-
-    def total_clientes(self):
-        return len(self.clientes)
+            

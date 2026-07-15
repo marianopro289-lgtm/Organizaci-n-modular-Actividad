@@ -1,16 +1,15 @@
 class Producto:
-    def __init__(self, nombre: str, precio: float, cantidad: int, disponible: bool):
-        
+    def __init__(self, codigo: str, nombre: str, categoria: str, precio: float):
+        self.codigo = codigo
         self.nombre = nombre
+        self.categoria = categoria
         self.precio = precio
-        self.cantidad = cantidad
-        self.disponible = disponible
 
-    def __str__(self):
-        estado = "Disponible" if self.disponible else "No disponible"
+    def mostrar_informacion(self) -> str:
         return (
-            f"Producto: {self.nombre}\n"
-            f"Precio: ${self.precio:.2f}\n"
-            f"Cantidad: {self.cantidad}\n"
-            f"Estado: {estado}"
+            f"Código: {self.codigo}\n"
+            f"Nombre: {self.nombre}\n"
+            f"Categoría: {self.categoria}\n"
+            f"Precio: ${self.precio:.2f}"
         )
+        
